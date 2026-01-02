@@ -1,369 +1,1110 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Dhiwakar Portfolio</title>
+  <title>Dhiwakar | BCA Student Portfolio</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
+      font-family: 'Segoe UI', 'Inter', sans-serif;
     }
+    
+    :root {
+      --primary-color: #4f46e5;
+      --primary-dark: #3730a3;
+      --secondary-color: #0f172a;
+      --light-bg: #f8fafc;
+      --dark-bg: #0f172a;
+      --dark-card: #1e293b;
+      --text-light: #64748b;
+      --text-dark: #1e293b;
+      --white: #ffffff;
+      --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+      --transition: all 0.3s ease;
+      --border-radius: 12px;
+    }
+    
     html {
       scroll-behavior: smooth;
     }
+    
     body {
-      font-family: 'Segoe UI', sans-serif;
-      background: #f5f7fa;
-      color: #2b2525;
+      background-color: var(--light-bg);
+      color: var(--text-dark);
+      line-height: 1.6;
+      transition: var(--transition);
     }
+    
+    body.dark-mode {
+      background-color: var(--dark-bg);
+      color: #e2e8f0;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    /* Header */
     header {
-      background: linear-gradient(135deg, #1e3c72, #2a5298);
-      color: white;
-      text-align: center;
-      padding: 3rem 1rem 5rem;
+      background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+      color: var(--white);
+      padding: 2rem 0 6rem;
       position: relative;
+      overflow: hidden;
     }
-    .profile-picture {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 4px solid #fff;
-  position: relative;
-  margin-top: -80px;
-  margin-bottom: 1rem;
-}
-    .tabs {
+    
+    .header-container {
       display: flex;
+      align-items: center;
+      justify-content: space-between;
       flex-wrap: wrap;
-      justify-content: center;
-      background: white;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      gap: 2rem;
     }
-    .tabs button {
-      padding: 0.8rem 1.5rem;
-      background: #ffffff;
-      border: 2px solid #2a5298;
-      border-radius: 8px;
-      margin: 0.5rem;
-      cursor: pointer;
-      font-size: 16px;
-      font-weight: 500;
-      color: #2a5298;
-      transition: all 0.3s ease;
+    
+    .header-content {
+      flex: 1;
+      min-width: 300px;
     }
-    .tabs button:hover,
-    .tabs button.active {
-      background: #135ee0;
-      color: #fff;
-      border-color: #1752b9;
-    }
-    section {
-      max-width: 900px;
-      margin: auto;
-      background: white;
-      padding: 2rem;
-      margin-top: 2rem;
-      border-radius: 12px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.05);
-      display: none;
-      opacity: 0;
-      transform: translateY(30px);
-      transition: all 0.5s ease;
-    }
-    section.active {
-      display: block;
-      opacity: 1;
-      transform: translateY(0);
-    }
-    h2 {
-      color: #2a5298;
-      margin-bottom: 1rem;
-    }
-    ul li {
+    
+    .header-title {
+      font-size: 2.5rem;
+      font-weight: 700;
       margin-bottom: 0.5rem;
     }
-    .download-button {
-      display: inline-block;
-      background: #2a5298;
-      color: block;
-      padding: 0.5rem 1rem;
-      border-radius: 20px;
+    
+    .header-subtitle {
+      font-size: 1.25rem;
+      opacity: 0.9;
+      margin-bottom: 1.5rem;
+    }
+    
+    .header-actions {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    
+    .btn {
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      border: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .btn-primary {
+      background-color: var(--white);
+      color: var(--primary-color);
+    }
+    
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow);
+    }
+    
+    .btn-secondary {
+      background-color: transparent;
+      color: var(--white);
+      border: 2px solid var(--white);
+    }
+    
+    .btn-secondary:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+      transform: translateY(-3px);
+    }
+    
+    .profile-container {
+      position: relative;
+      flex-shrink: 0;
+    }
+    
+    .profile-img {
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 6px solid rgba(255, 255, 255, 0.2);
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+    }
+    
+    .profile-img:hover {
+      transform: scale(1.03);
+    }
+    
+    .change-profile-btn {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      background-color: var(--white);
+      color: var(--primary-color);
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: var(--shadow);
+      border: none;
+      font-size: 1.1rem;
+      transition: var(--transition);
+    }
+    
+    .change-profile-btn:hover {
+      transform: scale(1.1);
+    }
+    
+    /* Theme Toggle */
+    .theme-toggle {
+      position: absolute;
+      top: 2rem;
+      right: 2rem;
+      background: rgba(255, 255, 255, 0.1);
+      border: none;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--white);
+      font-size: 1.3rem;
+      transition: var(--transition);
+      backdrop-filter: blur(5px);
+    }
+    
+    .theme-toggle:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: rotate(15deg);
+    }
+    
+    /* Navigation Tabs */
+    .nav-tabs {
+      display: flex;
+      background-color: var(--white);
+      border-radius: var(--border-radius);
+      padding: 0.5rem;
+      box-shadow: var(--shadow);
+      margin-top: -2rem;
+      margin-bottom: 3rem;
+      position: relative;
+      z-index: 10;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    
+    .dark-mode .nav-tabs {
+      background-color: var(--dark-card);
+    }
+    
+    .tab-btn {
+      padding: 0.75rem 1.5rem;
+      background: transparent;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      color: var(--text-light);
+      cursor: pointer;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin: 0.25rem;
+    }
+    
+    .tab-btn:hover {
+      color: var(--primary-color);
+    }
+    
+    .tab-btn.active {
+      background-color: var(--primary-color);
+      color: var(--white);
+    }
+    
+    /* Content Sections */
+    .content-section {
+      display: none;
+      animation: fadeIn 0.5s ease forwards;
+      margin-bottom: 3rem;
+    }
+    
+    .content-section.active {
+      display: block;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .section-card {
+      background-color: var(--white);
+      border-radius: var(--border-radius);
+      padding: 2.5rem;
+      box-shadow: var(--shadow);
+      margin-bottom: 2rem;
+    }
+    
+    .dark-mode .section-card {
+      background-color: var(--dark-card);
+    }
+    
+    .section-title {
+      font-size: 1.75rem;
+      color: var(--primary-color);
+      margin-bottom: 1.5rem;
+      position: relative;
+      padding-bottom: 0.75rem;
+    }
+    
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 60px;
+      height: 4px;
+      background-color: var(--primary-color);
+      border-radius: 2px;
+    }
+    
+    /* About Section */
+    .about-text {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: var(--text-light);
+    }
+    
+    .dark-mode .about-text {
+      color: #cbd5e1;
+    }
+    
+    /* Education & Experience */
+    .timeline {
+      position: relative;
+      padding-left: 2rem;
+    }
+    
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 7px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background-color: var(--primary-color);
+      opacity: 0.3;
+    }
+    
+    .timeline-item {
+      position: relative;
+      margin-bottom: 2rem;
+    }
+    
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -2rem;
+      top: 5px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background-color: var(--primary-color);
+    }
+    
+    .timeline-date {
+      font-weight: 600;
+      color: var(--primary-color);
+      margin-bottom: 0.25rem;
+    }
+    
+    .timeline-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+    
+    .timeline-desc {
+      color: var(--text-light);
+    }
+    
+    /* Skills */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+    
+    .skill-item {
+      background-color: var(--light-bg);
+      padding: 1.5rem;
+      border-radius: var(--border-radius);
+      transition: var(--transition);
+    }
+    
+    .dark-mode .skill-item {
+      background-color: #2d3748;
+    }
+    
+    .skill-item:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow);
+    }
+    
+    .skill-name {
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    /* Projects */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+    
+    .project-card {
+      background-color: var(--light-bg);
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      transition: var(--transition);
+    }
+    
+    .dark-mode .project-card {
+      background-color: #2d3748;
+    }
+    
+    .project-card:hover {
+      transform: translateY(-10px);
+      box-shadow: var(--shadow);
+    }
+    
+    .project-content {
+      padding: 1.5rem;
+    }
+    
+    .project-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+      color: var(--primary-color);
+    }
+    
+    .project-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--primary-color);
+      font-weight: 600;
       text-decoration: none;
       margin-top: 1rem;
+      transition: var(--transition);
     }
-    .download-button:hover {
-      background: #1e3c72;
+    
+    .project-link:hover {
+      gap: 0.75rem;
     }
-    footer {
-      text-align: center;
+    
+    /* Certificates */
+    .certificates-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+    
+    .certificate-card {
+      background-color: var(--light-bg);
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      transition: var(--transition);
+    }
+    
+    .dark-mode .certificate-card {
+      background-color: #2d3748;
+    }
+    
+    .certificate-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow);
+    }
+    
+    .certificate-img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+    
+    .certificate-content {
       padding: 1.5rem;
-      background: #2a5298;
-      color: red;
-      margin-top: 3rem;
     }
+    
+    /* Resume */
+    .resume-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    
+    /* Contact */
+    .contact-info {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+    
+    .contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+    
+    .contact-icon {
+      background-color: var(--primary-color);
+      color: var(--white);
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      flex-shrink: 0;
+    }
+    
+    /* Footer */
+    footer {
+      background-color: var(--secondary-color);
+      color: var(--white);
+      padding: 3rem 0;
+      text-align: center;
+      margin-top: 4rem;
+    }
+    
+    .footer-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5rem;
+    }
+    
+    .social-links {
+      display: flex;
+      gap: 1.5rem;
+    }
+    
+    .social-link {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: rgba(255, 255, 255, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--white);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+    
+    .social-link:hover {
+      background-color: var(--primary-color);
+      transform: translateY(-3px);
+    }
+    
+    .copyright {
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 0.9rem;
+    }
+    
+    /* Modal */
     .modal {
       display: none;
       position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0,0,0,0.5);
-      justify-content: center;
-      align-items: center;
-    }
-    .modal-content {
-      background: white;
-      padding: 2rem;
-      border-radius: 10px;
-      width: 300px;
-      text-align: center;
-      animation: fadeIn 0.3s ease-in-out;
-    }
-    .modal-content input {
+      top: 0;
+      left: 0;
       width: 100%;
-      padding: 10px;
-      margin-top: 10px;
-      font-size: 16px;
-      border-radius: 6px;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.7);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      animation: fadeIn 0.3s ease;
     }
-    .modal-content button {
-      background: #2a5298;
-      color: rgb(255, 255, 255);
-      border: none;
-      padding: 10px 20px;
-      margin-top: 1rem;
-      border-radius: 6px;
-      cursor: pointer;
+    
+    .modal-content {
+      background-color: var(--white);
+      border-radius: var(--border-radius);
+      padding: 2.5rem;
+      max-width: 450px;
+      width: 90%;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+      animation: slideUp 0.3s ease;
     }
-    .modal-content .error {
-      color: red;
-      font-size: 14px;
-      margin-top: 10px;
+    
+    .dark-mode .modal-content {
+      background-color: var(--dark-card);
     }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: scale(0.95); }
-      to { opacity: 1; transform: scale(1); }
+    
+    @keyframes slideUp {
+      from { transform: translateY(30px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
     }
-    @media (max-width: 600px) {
-      .tabs button {
-        flex: 1 0 100%;
-        padding: 0.75rem;
-        font-size: 15px;
+    
+    .modal-title {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: var(--primary-color);
+    }
+    
+    .modal-input {
+      width: 100%;
+      padding: 0.875rem;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 1rem;
+      margin-bottom: 1rem;
+      transition: var(--transition);
+    }
+    
+    .dark-mode .modal-input {
+      background-color: #374151;
+      border-color: #4b5563;
+      color: #f3f4f6;
+    }
+    
+    .modal-input:focus {
+      outline: none;
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+    }
+    
+    .modal-error {
+      color: #ef4444;
+      font-size: 0.875rem;
+      margin-bottom: 1rem;
+      min-height: 20px;
+    }
+    
+    .modal-actions {
+      display: flex;
+      gap: 1rem;
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .header-container {
+        flex-direction: column;
+        text-align: center;
       }
-      .profile-picture {
-        position: static;
-        margin-bottom: 1rem;
+      
+      .header-actions {
+        justify-content: center;
       }
-      header {
-        padding-bottom: 2rem;
+      
+      .header-title {
+        font-size: 2rem;
       }
-    }
-    .dark-mode {
-      background-color: #121212;
-      color: #f5f5f5;
-    }
-    .dark-mode section {
-      background-color: #1e1e1e;
-      color: #f5f5f5;
-    }
-    .dark-mode header {
-      background: linear-gradient(135deg, #000000, #2a2a2a);
-    }
-    .dark-mode .tabs button {
-      background-color: #2a2a2a;
-      color: #f5f5f5;
-      border-color: #555;
-    }
-    .dark-mode .tabs button.active,
-    .dark-mode .tabs button:hover {
-      background-color: #444;
-      color: #ffffffda;
-    }
-    .dark-toggle {
-      position: absolute;
-      top: 1rem;
-      right: 1rem;
-      background: #fff;
-      border: none;
-      padding: 0.5rem 1rem;
-      font-weight: bold;
-      cursor: pointer;
-      border-radius: 5px;
-      color: #6a2a98;
+      
+      .nav-tabs {
+        margin-top: 1rem;
+      }
+      
+      .tab-btn {
+        padding: 0.6rem 1rem;
+        font-size: 0.9rem;
+      }
+      
+      .section-card {
+        padding: 1.5rem;
+      }
+      
+      .theme-toggle {
+        top: 1rem;
+        right: 1rem;
+        width: 45px;
+        height: 45px;
+      }
     }
   </style>
 </head>
 <body>
-<header style="display: flex; flex-direction: row; align-items: center; justify-content: space-between; padding: 2rem">
-  <button class="dark-toggle" onclick="toggleDarkMode()">Toggle Dark Mode</button>
-  <img src="./shyamala.jpg" alt="Profile Picture" class="profile-picture" id="profileImage" style="margin: 0 1rem 0 0; align-self: flex-start;">
-  <div style="text-align: left;">
-    <h1> Dhiwakar</h1>
+  <!-- Header Section -->
+  <header>
+    <button class="theme-toggle" id="themeToggle">
+      <i class="fas fa-moon"></i>
+    </button>
     
-  </div>
-  <p>UG student</p>
-  <input type="file" id="fileInput" accept="image/*" style="display:none">
-  <button onclick="showModal()">Change Profile</button>
-</header>
-
-<div class="tabs">
-  <button class="tab-btn active" data-tab="about">About</button>
-  <button class="tab-btn" data-tab="certificates">Certificates</button>
-  <button class="tab-btn" data-tab="experience">Experience</button>
-  <button class="tab-btn" data-tab="education">Education</button>
-  <button class="tab-btn" data-tab="skills">Skills</button>
-  <button class="tab-btn" data-tab="projects">Projects</button>
-  <button class="tab-btn" data-tab="resume">Resume</button>
-  <button class="tab-btn" data-tab="contact">Contact</button>
-</div>
-
-<section id="about" class="active">
-  <h2>About Me</h2>
-  <p>I'm an <b>BCA Student</b></p>
-</section>
-
-<section id="education">
-  <h2>Education</h2>
-  <p>Madras university – B.C.A</p>
-</section>
-
-<section id="skills">
-  <h2>Skills</h2>
-  <ul>
-    <li>Computer Networking</li>
-    <li>Python</li>
-    <li>Data base</li>
-    <li>Machine Learning & AI</li>
-    <li>Java</li>
-    <li>c</li>
-    <li>C++</li>
-    <li>JavaScript</li>
-  </ul>
-</section>
-
-<section id="projects">
-  <h2>Projects</h2>
-  <ul>
-    <li><a href="#">AI-Based Alternator Control System</a></li>
-    <li><a href="https://github.com/techtrainer20/blockchain.git" target="_blank">Cloud Security with IBM</a></li>
-    <li><a href="#">IBM Chatbot</a></li>
-    <li><a href="#">Generic Chatbot</a></li>
-  </ul>
-</section>
-
-<section id="resume">
-  <h2>Resume</h2>
-  <a href="./Name list for IBM SkillsBuild.pdf" target="_blank" class="download-button">Download CV</a>
-</section>
-
-<section id="contact">
-  <h2>Contact</h2>
-  <p>Email: <a href="vasantidhiwakar@gmail.com">vasantidhiwakar@gmail.com</a></p>
-  <p>Phone: +91-9360202169</p>
-  <p>Location: Chennai, India</p>
-</section>
-
-<section id="certificates">
-  <h2>Certificates</h2>
-  <div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center;">
-    <div style="text-align: center;">
-      <p>Cloud Computing</p>
-    </div>
-    <div style="text-align: center;">
-      <a href="https://www.credly.com/badges/f6da9703-5d85-42b8-8a47-0a1241ac33d1" target="_blank">
-        <img src="certificate2.jpg" alt="Blockchain Fundamentals – IBM" style="max-width: 200px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
-      </a>
-      <p>Fundamendals of web development – IBM</p>
-    </div>
-    <div style="text-align: center;">
-      <a href="https://www.credly.com/badges/178c77d0-59ad-4bd3-a6d5-1ab8c6dd680e" target="_blank">
-        <img src="certificate3.jpg" alt="Machine Learning with Python – Coursera" style="max-width: 200px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
-      </a>
+    <div class="container header-container">
+      <div class="header-content">
+        <h1 class="header-title">Dhiwakar</h1>
+        <p class="header-subtitle">BCA Student & Aspiring Developer</p>
+        <p>Passionate about technology, AI, and software development. Currently pursuing Bachelor of Computer Applications with focus on modern web technologies and machine learning.</p>
+        <div class="header-actions">
+          <button class="btn btn-primary" onclick="showSection('resume')">
+            <i class="fas fa-download"></i> Download CV
+          </button>
+          <button class="btn btn-secondary" onclick="showSection('contact')">
+            <i class="fas fa-envelope"></i> Contact Me
+          </button>
+        </div>
+      </div>
       
+      <div class="profile-container">
+        <img src="./shyamala.jpg" alt="Dhiwakar Profile Picture" class="profile-img" id="profileImage">
+        <button class="change-profile-btn" onclick="showPasswordModal()">
+          <i class="fas fa-camera"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+  
+  <!-- Navigation Tabs -->
+  <div class="container">
+    <nav class="nav-tabs">
+      <button class="tab-btn active" data-section="about">
+        <i class="fas fa-user"></i> About
+      </button>
+      <button class="tab-btn" data-section="education">
+        <i class="fas fa-graduation-cap"></i> Education
+      </button>
+      <button class="tab-btn" data-section="skills">
+        <i class="fas fa-code"></i> Skills
+      </button>
+      <button class="tab-btn" data-section="projects">
+        <i class="fas fa-project-diagram"></i> Projects
+      </button>
+      <button class="tab-btn" data-section="certificates">
+        <i class="fas fa-certificate"></i> Certificates
+      </button>
+      <button class="tab-btn" data-section="resume">
+        <i class="fas fa-file-alt"></i> Resume
+      </button>
+      <button class="tab-btn" data-section="contact">
+        <i class="fas fa-address-book"></i> Contact
+      </button>
+    </nav>
+  </div>
+  
+  <!-- Main Content -->
+  <main class="container">
+    <!-- About Section -->
+    <section id="about" class="content-section active">
+      <div class="section-card">
+        <h2 class="section-title">About Me</h2>
+        <p class="about-text">
+          I'm a dedicated <strong>BCA (Bachelor of Computer Applications) student</strong> passionate about technology, software development, and emerging tech trends. 
+          My academic journey has equipped me with solid foundations in programming, databases, networking, and web technologies.
+        </p>
+        <p class="about-text">
+          I have a keen interest in <strong>AI, Machine Learning, and Cloud Computing</strong>, and I've completed several certifications in these domains. 
+          I enjoy building practical projects that solve real-world problems and continuously expanding my skill set.
+        </p>
+        <p class="about-text">
+          When I'm not coding, I like to explore new technologies, contribute to open-source projects, and stay updated with the latest trends in the tech industry.
+        </p>
+      </div>
+    </section>
+    
+    <!-- Education Section -->
+    <section id="education" class="content-section">
+      <div class="section-card">
+        <h2 class="section-title">Education</h2>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-date">2022 - Present</div>
+            <h3 class="timeline-title">Bachelor of Computer Applications (BCA)</h3>
+            <p class="timeline-desc">University of Madras, Chennai</p>
+            <p class="timeline-desc">Specializing in Software Development, Database Systems, and Networking</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="section-card">
+        <h2 class="section-title">Experience</h2>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-date">2023 - Present</div>
+            <h3 class="timeline-title">Freelance Developer</h3>
+            <p class="timeline-desc">Working on small projects and websites for local businesses</p>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-date">Summer 2023</div>
+            <h3 class="timeline-title">IBM SkillsBuild Program Participant</h3>
+            <p class="timeline-desc">Completed intensive training in Cloud Computing, AI, and Blockchain fundamentals</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Skills Section -->
+    <section id="skills" class="content-section">
+      <div class="section-card">
+        <h2 class="section-title">Technical Skills</h2>
+        <div class="skills-grid">
+          <div class="skill-item">
+            <h3 class="skill-name"><i class="fas fa-network-wired"></i> Computer Networking</h3>
+            <p>Understanding of network protocols, topologies, and security fundamentals</p>
+          </div>
+          <div class="skill-item">
+            <h3 class="skill-name"><i class="fab fa-python"></i> Python</h3>
+            <p>Data analysis, scripting, and basic machine learning implementations</p>
+          </div>
+          <div class="skill-item">
+            <h3 class="skill-name"><i class="fas fa-database"></i> Database Management</h3>
+            <p>SQL, database design, and management systems</p>
+          </div>
+          <div class="skill-item">
+            <h3 class="skill-name"><i class="fas fa-brain"></i> Machine Learning & AI</h3>
+            <p>Fundamental concepts and implementation with Python libraries</p>
+          </div>
+          <div class="skill-item">
+            <h3 class="skill-name"><i class="fab fa-java"></i> Java</h3>
+            <p>Object-oriented programming and application development</p>
+          </div>
+          <div class="skill-item">
+            <h3 class="skill-name"><i class="fas fa-c"></i> C / C++</h3>
+            <p>System programming and algorithmic problem solving</p>
+          </div>
+          <div class="skill-item">
+            <h3 class="skill-name"><i class="fab fa-js"></i> JavaScript</h3>
+            <p>Frontend development and interactive web applications</p>
+          </div>
+          <div class="skill-item">
+            <h3 class="skill-name"><i class="fas fa-cloud"></i> Cloud Computing</h3>
+            <p>IBM Cloud fundamentals and cloud security concepts</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Projects Section -->
+    <section id="projects" class="content-section">
+      <div class="section-card">
+        <h2 class="section-title">Projects</h2>
+        <div class="projects-grid">
+          <div class="project-card">
+            <div class="project-content">
+              <h3 class="project-title">AI-Based Alternator Control System</h3>
+              <p>An intelligent system that optimizes alternator performance using machine learning algorithms to predict and adjust output based on electrical load patterns.</p>
+              <a href="#" class="project-link">
+                View Details <i class="fas fa-arrow-right"></i>
+              </a>
+            </div>
+          </div>
+          
+          <div class="project-card">
+            <div class="project-content">
+              <h3 class="project-title">Cloud Security with IBM</h3>
+              <p>Implemented security protocols and best practices for cloud infrastructure using IBM Cloud services.</p>
+              <a href="https://github.com/techtrainer20/blockchain.git" target="_blank" class="project-link">
+                View on GitHub <i class="fas fa-external-link-alt"></i>
+              </a>
+            </div>
+          </div>
+          
+          <div class="project-card">
+            <div class="project-content">
+              <h3 class="project-title">IBM Chatbot</h3>
+              <p>Developed an AI-powered chatbot using IBM Watson Assistant for customer service automation.</p>
+              <a href="#" class="project-link">
+                View Details <i class="fas fa-arrow-right"></i>
+              </a>
+            </div>
+          </div>
+          
+          <div class="project-card">
+            <div class="project-content">
+              <h3 class="project-title">Generic Chatbot</h3>
+              <p>A versatile chatbot framework that can be customized for different domains and use cases.</p>
+              <a href="#" class="project-link">
+                View Details <i class="fas fa-arrow-right"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Certificates Section -->
+    <section id="certificates" class="content-section">
+      <div class="section-card">
+        <h2 class="section-title">Certifications</h2>
+        <div class="certificates-grid">
+          <div class="certificate-card">
+            <div class="certificate-content">
+              <h3>Cloud Computing</h3>
+              <p>IBM SkillsBuild</p>
+              <p>Fundamentals of cloud infrastructure, services, and deployment models</p>
+            </div>
+          </div>
+          
+          <div class="certificate-card">
+            <img src="certificate2.jpg" alt="Blockchain Fundamentals" class="certificate-img">
+            <div class="certificate-content">
+              <h3>Blockchain Fundamentals</h3>
+              <p>IBM SkillsBuild</p>
+              <a href="https://www.credly.com/badges/f6da9703-5d85-42b8-8a47-0a1241ac33d1" target="_blank" class="project-link">
+                View Credential <i class="fas fa-external-link-alt"></i>
+              </a>
+            </div>
+          </div>
+          
+          <div class="certificate-card">
+            <img src="certificate3.jpg" alt="Machine Learning with Python" class="certificate-img">
+            <div class="certificate-content">
+              <h3>Machine Learning with Python</h3>
+              <p>Coursera</p>
+              <a href="https://www.credly.com/badges/178c77d0-59ad-4bd3-a6d5-1ab8c6dd680e" target="_blank" class="project-link">
+                View Credential <i class="fas fa-external-link-alt"></i>
+              </a>
+            </div>
+          </div>
+          
+          <div class="certificate-card">
+            <div class="certificate-content">
+              <h3>Web Development Fundamentals</h3>
+              <p>IBM SkillsBuild</p>
+              <p>HTML, CSS, JavaScript, and responsive web design principles</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Resume Section -->
+    <section id="resume" class="content-section">
+      <div class="section-card">
+        <h2 class="section-title">Resume & CV</h2>
+        <p>Download my complete resume to learn more about my education, skills, projects, and experience.</p>
+        <div class="resume-actions">
+          <a href="./Name list for IBM SkillsBuild.pdf" target="_blank" class="btn btn-primary">
+            <i class="fas fa-eye"></i> View Resume
+          </a>
+          <a href="./Name list for IBM SkillsBuild.pdf" download class="btn btn-secondary">
+            <i class="fas fa-download"></i> Download PDF
+          </a>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Contact Section -->
+    <section id="contact" class="content-section">
+      <div class="section-card">
+        <h2 class="section-title">Contact Information</h2>
+        <div class="contact-info">
+          <div class="contact-item">
+            <div class="contact-icon">
+              <i class="fas fa-envelope"></i>
+            </div>
+            <div>
+              <h3>Email</h3>
+              <p><a href="mailto:vasantidhiwakar@gmail.com">vasantidhiwakar@gmail.com</a></p>
+            </div>
+          </div>
+          
+          <div class="contact-item">
+            <div class="contact-icon">
+              <i class="fas fa-phone"></i>
+            </div>
+            <div>
+              <h3>Phone</h3>
+              <p>+91-9360202169</p>
+            </div>
+          </div>
+          
+          <div class="contact-item">
+            <div class="contact-icon">
+              <i class="fas fa-map-marker-alt"></i>
+            </div>
+            <div>
+              <h3>Location</h3>
+              <p>Chennai, India</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  
+  <!-- Footer -->
+  <footer>
+    <div class="container footer-content">
+      <div class="social-links">
+        <a href="#" class="social-link">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+        <a href="#" class="social-link">
+          <i class="fab fa-github"></i>
+        </a>
+        <a href="#" class="social-link">
+          <i class="fab fa-twitter"></i>
+        </a>
+        <a href="#" class="social-link">
+          <i class="fab fa-instagram"></i>
+        </a>
+      </div>
+      <p class="copyright">&copy; 2025 Dhiwakar. All Rights Reserved.</p>
+    </div>
+  </footer>
+  
+  <!-- Password Modal -->
+  <div class="modal" id="passwordModal">
+    <div class="modal-content">
+      <h2 class="modal-title">Change Profile Picture</h2>
+      <p>Enter password to change your profile image:</p>
+      <input type="password" class="modal-input" id="passwordInput" placeholder="Enter password" autocomplete="off">
+      <div class="modal-error" id="passwordError"></div>
+      <div class="modal-actions">
+        <button class="btn btn-primary" onclick="checkPassword()">Submit</button>
+        <button class="btn btn-secondary" onclick="closeModal()">Cancel</button>
+      </div>
     </div>
   </div>
-</section>
-
-<section id="experience">
-  <h2>Experience</h2>
- 
-<footer>
-  <p>&copy; 2025 Dhiwakar. All rights reserved.</p>
-</footer>
-
-<div class="modal" id="passwordModal">
-  <div class="modal-content">
-    <h3>Enter Password</h3>
-    <input type="password" id="passwordInput" placeholder="Password">
-    <div class="error" id="errorMsg"></div>
-    <button onclick="checkPassword()">Submit</button>
-  </div>
-</div>
-
-<script>
-  const fileInput = document.getElementById('fileInput');
-  const profileImage = document.getElementById('profileImage');
-  const modal = document.getElementById('passwordModal');
-  const passwordInput = document.getElementById('passwordInput');
-  const errorMsg = document.getElementById('errorMsg');
-  const correctPassword = "1234";
-
-  const savedImage = localStorage.getItem("profileImage");
-  if (savedImage) {
-    profileImage.src = savedImage;
-  }
-
-  function showModal() {
-    modal.style.display = 'flex';
-    passwordInput.value = '';
-    errorMsg.textContent = '';
-    passwordInput.focus();
-  }
-
-  function checkPassword() {
-    if (passwordInput.value === correctPassword) {
-      modal.style.display = 'none';
-      fileInput.click();
-    } else {
-      errorMsg.textContent = "Incorrect password!";
+  
+  <!-- Hidden File Input -->
+  <input type="file" id="fileInput" accept="image/*" style="display: none;">
+  
+  <script>
+    // DOM Elements
+    const themeToggle = document.getElementById('themeToggle');
+    const tabButtons = document.querySelectorAll('.tab-btn');
+    const contentSections = document.querySelectorAll('.content-section');
+    const passwordModal = document.getElementById('passwordModal');
+    const passwordInput = document.getElementById('passwordInput');
+    const passwordError = document.getElementById('passwordError');
+    const fileInput = document.getElementById('fileInput');
+    const profileImage = document.getElementById('profileImage');
+    
+    // Correct password
+    const CORRECT_PASSWORD = "1234";
+    
+    // Check for saved theme preference
+    if (localStorage.getItem('darkMode') === 'enabled') {
+      enableDarkMode();
     }
-  }
-
-  fileInput.addEventListener('change', function () {
-    const file = this.files[0];
-    if (file && file.type.startsWith('image/')) {
-      const reader = new FileReader();
-      reader.onload = function (e) {
-        profileImage.src = e.target.result;
-        localStorage.setItem("profileImage", e.target.result);
-      };
-      reader.readAsDataURL(file);
-    } else {
-      alert("Please select a valid image file.");
-    }
-  });
-
-  window.onclick = function(e) {
-    if (e.target === modal) modal.style.display = "none";
-  };
-
-  const tabButtons = document.querySelectorAll('.tab-btn');
-  const tabSections = document.querySelectorAll('section');
-
-  tabButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.querySelector('.tab-btn.active').classList.remove('active');
-      btn.classList.add('active');
-      tabSections.forEach(section => section.classList.remove('active'));
-      document.getElementById(btn.getAttribute('data-tab')).classList.add('active');
+    
+    // Theme Toggle
+    themeToggle.addEventListener('click', () => {
+      if (document.body.classList.contains('dark-mode')) {
+        disableDarkMode();
+      } else {
+        enableDarkMode();
+      }
     });
-  });
-
-  function toggleDarkMode() {
-    document.body.classList.toggle('dark-mode');
-  }
-</script>
+    
+    function enableDarkMode() {
+      document.body.classList.add('dark-mode');
+      themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+      localStorage.setItem('darkMode', 'enabled');
+    }
+    
+    function disableDarkMode() {
+      document.body.classList.remove('dark-mode');
+      themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+      localStorage.setItem('darkMode', 'disabled');
+    }
+    
+    // Tab Navigation
+    tabButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        // Remove active class from all buttons and sections
+        tabButtons.forEach(btn => btn.classList.remove('active'));
+        contentSections.forEach(section => section.classList.remove('active'));
+        
+        // Add active class to clicked button and corresponding section
+        button.classList.add('active');
+        const sectionId = button.getAttribute('data-section');
+        document.getElementById(sectionId).classList.add('active');
+      });
+    });
+    
+    // Show specific section (used by buttons in header)
+    function showSection(sectionId) {
+      tabButtons.forEach(btn => btn.classList.remove('active'));
+      contentSections.forEach(section => section.classList.remove('active'));
+      
+      // Find and activate the corresponding tab button
+      const correspondingButton = Array.from(tabButtons).find(
+        btn => btn.getAttribute('data-section') === sectionId
+      );
+      
+      if (correspondingButton) {
+        correspondingButton.classList.add('active');
+      }
+      
+      document.getElementById(sectionId).classList.add('active');
+    }
+    
+    // Profile Image Change Functionality
+    function showPasswordModal() {
+      passwordModal.style.display = 'flex';
+      passwordInput.value = '';
+      passwordError.textContent = '';
+      passwordInput.focus();
+    }
+    
+    function closeModal() {
+      passwordModal.style.display = 'none';
+    }
+    
+    function checkPassword() {
+      if (passwordInput.value === CORRECT_PASSWORD) {
+        passwordError.textContent = '';
+        closeModal();
+        fileInput.click();
+      } else {
+        passwordError.textContent = 'Incorrect password. Please try again.';
+        passwordInput.focus();
+      }
+    }
+    
+    fileInput.addEventListener('change', function() {
+      if (this.files && this.files[0]) {
+        const reader = new FileReader();
+        
+        reader.onload = function(e) {
+          profileImage.src = e.target.result;
+          // Save to localStorage
+          localStorage.setItem('profileImage', e.target.result);
+        }
+        
+        reader.readAsDataURL(this.files[0]);
+      }
+    });
+    
+    // Load saved profile image
+    const savedImage = localStorage.getItem('profileImage');
+    if (savedImage) {
+      profileImage.src = savedImage;
+    }
+    
+    // Close modal when clicking outside
+    window.addEventListener('click', (e) => {
+      if (e.target === passwordModal) {
+        closeModal();
+      }
+    });
+    
+    // Close modal with Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && passwordModal.style.display === 'flex') {
+        closeModal();
+      }
+    });
+  </script>
 </body>
 </html>
